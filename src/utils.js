@@ -2,6 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import checkPropTypes from 'check-prop-types';
 import App from './App'
+import './setupTests';
 
 /**
  * Factory Function to Create a shallow wrapper for the App component
