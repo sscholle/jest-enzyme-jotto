@@ -31,7 +31,6 @@ describe('GuessedWords', () => {
 
   describe('if there are no words guessed', () => {
     it('renders without error', () => {
-      // wrapper = setup({ guessedWords: []});
       const component = findByTestAttr(wrapper, 'component-guessed-words');
       expect(component.length).toBe(1);
     });
@@ -42,7 +41,39 @@ describe('GuessedWords', () => {
   });
 
   describe('if there are words guessed', () => {
+    let guessedWords;
+    guessedWords = [
+      {
+        word: 'something',
+        letterMatchCount: 2,
+      },
+      {
+        word: 'super',
+        letterMatchCount: 1,
+      },
+      {
+        word: 'interesting',
+        letterMatchCount: 4,
+      },
+    ];
 
+    // let wrapper;
+
+    beforeEach(() => {
+      wrapper = setup({ guessedWords });
+    });
+
+    it('renders without error', () => {
+      const component = findByTestAttr(wrapper, 'component-guessed-words');
+      expect(component.length).toBe(1);
+    });
+    it('renders "guessed words" section', () => {
+      const component = findByTestAttr(wrapper, 'guessed-words');
+      expect(component.length).toBe(1);
+    });
+    it('correct number of guessed words', () => {
+      const component = findByTestAttr(wrapper, 'guessed-words-item');
+      expect(component.length).toBe(guessedWords.length);
+    });
   });
 });
-
