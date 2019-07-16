@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element}
  */
 const Congrats = ({success}) => (
-    <div data-test="component-congrats">
-      {success && (<div data-test="congrats-message">Congrats</div>)}
+    <div className="alert alert-success" data-test="component-congrats">
+      {success && (<div data-test="congrats-message">Congrats! You guessed the word!</div>)}
     </div>
 );
 
