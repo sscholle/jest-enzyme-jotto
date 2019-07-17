@@ -2,7 +2,6 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import checkPropTypes from 'check-prop-types';
 import App from './App'
-import './setupTests';
 
 /**
  * Factory Function to Create a shallow wrapper for the App component
@@ -29,6 +28,7 @@ export const findByTestAttr = (wrapper, val) => {
   }
 
 export const getPropErrors = (component, expectedProps) => {
+  // eslint-disable-next-line react/forbid-foreign-prop-types
   const propError = checkPropTypes(component.propTypes, expectedProps, 'prop', component.name);
   return propError;
 }
