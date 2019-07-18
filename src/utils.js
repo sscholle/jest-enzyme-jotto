@@ -3,6 +3,13 @@ import {shallow} from 'enzyme';
 import checkPropTypes from 'check-prop-types';
 import App from './App'
 
+import { createStore } from 'redux';
+import rootReducer from './reducers/index';
+
+export const storeFactory = (initialState) => {
+  return createStore(rootReducer, initialState);
+}
+
 /**
  * Factory Function to Create a shallow wrapper for the App component
  * @param {object} props - setup the App with these React props
