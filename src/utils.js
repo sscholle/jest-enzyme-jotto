@@ -3,11 +3,13 @@ import {shallow} from 'enzyme';
 import checkPropTypes from 'check-prop-types';
 import App from './App'
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
+import { middleWares } from './configureStore';
 
 export const storeFactory = (initialState) => {
-  return createStore(rootReducer, initialState);
+  const createStoreWithMiddlwares = applyMiddleware(...middleWares)(createStore);
+  return createStoreWithMiddlwares(rootReducer, initialState);
 }
 
 /**
