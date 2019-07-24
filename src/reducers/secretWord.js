@@ -1,4 +1,4 @@
-// import { actionTypes } from "actions";
+import { actionTypes } from "actions";
 
 /**
  * @function secretWord
@@ -7,11 +7,10 @@
  * @returns {boolean} - new sucess state
  */
 export default (state = null, action = {}) => {
-  return state;
-  // switch(action.type) {
-  //   case (actionTypes.GUESS_WORD):
-  //     return null;
-  //   default:
-  //     return false;
-  // }
+  switch(action.type) {
+    case (actionTypes.SET_SECRET_WORD):
+      return action.payload;
+    default:
+      return state;
+  }
 }
