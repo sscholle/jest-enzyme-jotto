@@ -1,13 +1,13 @@
-import { actionTypes } from "actions";
+// import { actionTypes } from "actions";
 
 /**
- * @function guessWord
+ * @function secretWord
  * @param state - current state
  * @param action - new action to process
  * @returns {boolean} - new sucess state
  */
-export default (state = false, action = {}) => {
-  return null;
+export default (state = null, action = {}) => {
+  return state;
   // switch(action.type) {
   //   case (actionTypes.GUESS_WORD):
   //     return null;
