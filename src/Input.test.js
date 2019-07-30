@@ -63,7 +63,7 @@ describe('updating state / redux props', () => {
     const success = true;
     const wrapper = setup({ success });
     const successProp = wrapper.instance().props.success;
-    expect(successProp).toBe(false);
+    expect(successProp).toBe(success);
   });
   it('has success state as prop', () => {
     // const success = true;
