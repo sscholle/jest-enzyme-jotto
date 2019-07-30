@@ -14,6 +14,8 @@ describe('get secret word', () => {
   // create store
   // disptch will return promise
   // .then of the promise will contain the tests
+  // note: be careful for failing tests first - then ensure it passes
+  // especially with async tests
   it('add response to word state', () => {
     const secretWord = 'party';
     const store = storeFactory();

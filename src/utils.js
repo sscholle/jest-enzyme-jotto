@@ -7,6 +7,10 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import { middleWares } from './configureStore';
 
+/**
+ * Creates the redux store with Thunk middleware
+ * @param {object} initialState - pass in your preferred initial state props
+ */
 export const storeFactory = (initialState) => {
   const createStoreWithMiddlwares = applyMiddleware(...middleWares)(createStore);
   return createStoreWithMiddlwares(rootReducer, initialState);
