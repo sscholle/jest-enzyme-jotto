@@ -34,4 +34,5 @@ const mapStateToProps = (state) => {
   return { success, guessedWords, secretWord };
 }
 
+// pass in getSecretWord as an action (shorthand)
 export default connect(mapStateToProps, { getSecretWord })(UnconnectedApp);
