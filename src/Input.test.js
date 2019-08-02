@@ -84,7 +84,7 @@ describe('guessWord action creator call', () => {
     };
     // use mock with unconented component (a manual 'connect')
     wrapper = mount(<UnconnectedInput {...props} />);
-    // console.log(wrapper.instance());
+
     // add value to input box
     wrapper.instance().inputBox.current = { value: guessWord };
 
@@ -96,8 +96,13 @@ describe('guessWord action creator call', () => {
     const guessWordMockCalls = guessWordMock.mock.calls.length;
     expect(guessWordMockCalls).toBe(1);
   });
+
   test('guessWord was called with input value as argument', () => {
     const guessWordArg = guessWordMock.mock.calls[0][0];
     expect(guessWordArg).toBe(guessWord);
+  });
+
+  test('inputBox clears after submit', () => {
+    expect(wrapper.instance().inputBox.current.value).toBe('');
   });
 })
