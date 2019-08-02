@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { findByTestAttr, storeFactory } from './utils';
 import Input, { UnconnectedInput } from './Input';
 
@@ -73,21 +73,31 @@ describe('updating state / redux props', () => {
 });
 
 describe('guessWord action creator call', () => {
-  test('guessWord was called when Submit was clicked', () => {
-    const guessWordMock = jest.fn();
+  let wrapper;
+  let guessWordMock;
+  const guessWord = 'train';
 
+  beforeEach(() => {
+    guessWordMock = jest.fn();
     const props = {
       guessWord: guessWordMock,
     };
-
     // use mock with unconented component (a manual 'connect')
-    const wrapper = shallow(<UnconnectedInput {...props} />);
+    wrapper = mount(<UnconnectedInput {...props} />);
+    // console.log(wrapper.instance());
+    // add value to input box
+    wrapper.instance().inputBox.current = { value: guessWord };
 
     const button = findByTestAttr(wrapper, 'submit-button');
     button.simulate('click');
+  });
 
+  test('guessWord was called when Submit was clicked', () => {
     const guessWordMockCalls = guessWordMock.mock.calls.length;
-
     expect(guessWordMockCalls).toBe(1);
+  });
+  test('guessWord was called with input value as argument', () => {
+    const guessWordArg = guessWordMock.mock.calls[0][0];
+    expect(guessWordArg).toBe(guessWord);
   });
 })
