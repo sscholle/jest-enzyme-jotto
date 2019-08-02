@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findByTestAttr, storeFactory } from './utils';
-import Input from './Input';
+import Input, { UnconnectedInput } from './Input';
 
 // Use a store factory test utility
 // import store from './configureStore'
@@ -66,9 +66,28 @@ describe('updating state / redux props', () => {
     expect(successProp).toBe(success);
   });
   it('has success state as prop', () => {
-    // const success = true;
     const wrapper = setup();
     const guessWordProp = wrapper.instance().props.guessWord;
     expect(guessWordProp).toBeInstanceOf(Function);
   });
 });
+
+describe('guessWord action creator call', () => {
+  test('guessWord was called when Submit was clicked', () => {
+    const guessWordMock = jest.fn();
+
+    const props = {
+      guessWord: guessWordMock,
+    };
+
+    // use mock with unconented component (a manual 'connect')
+    const wrapper = shallow(<UnconnectedInput {...props} />);
+
+    const button = findByTestAttr(wrapper, 'submit-button');
+    button.simulate('click');
+
+    const guessWordMockCalls = guessWordMock.mock.calls.length;
+
+    expect(guessWordMockCalls).toBe(1);
+  });
+})
